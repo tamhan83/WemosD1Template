@@ -21,6 +21,7 @@ Adafruit_NeoPixel strip(LED_COUNT, 2, NEO_GRB + NEO_KHZ800);
 #include <avr/power.h> // Required for 16 MHz Adafruit Trinket
 #endif
 
+
 #ifndef STASSID
 #define STASSID "Doghouse_2.4"
 #define STAPSK  "GuitarHero40!"
