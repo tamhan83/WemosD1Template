@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WemosD1Template", "WemosD1Template\WemosD1Template.vcxproj", "{C5F80730-F44F-4478-BDAE-6634EFC2CA88}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Adafruit_NeoPixel-1.3.4", "Libraries\Adafruit_NeoPixel\1.3.4\Adafruit_NeoPixel\Adafruit_NeoPixel-1.3.4.vcxitems", "{4D1769ED-3030-49CB-A924-D41B76DF9D82}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ESP8266HTTPClient-1.2", "Libraries\ESP8266HTTPClient\1.2\ESP8266HTTPClient\ESP8266HTTPClient-1.2.vcxitems", "{CE287CDC-8DF9-4D3F-B157-FDD5514AE005}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PubSubClient-2.7", "Libraries\PubSubClient\2.7\PubSubClient\PubSubClient-2.7.vcxitems", "{D01A0E55-24F2-4CD3-BD0D-C1DCA5D51A61}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Libraries\Adafruit_NeoPixel\1.3.4\Adafruit_NeoPixel\Adafruit_NeoPixel-1.3.4.vcxitems*{4d1769ed-3030-49cb-a924-d41b76df9d82}*SharedItemsImports = 9
+		Libraries\Adafruit_NeoPixel\1.3.4\Adafruit_NeoPixel\Adafruit_NeoPixel-1.3.4.vcxitems*{c5f80730-f44f-4478-bdae-6634efc2ca88}*SharedItemsImports = 4
+		Libraries\ESP8266HTTPClient\1.2\ESP8266HTTPClient\ESP8266HTTPClient-1.2.vcxitems*{c5f80730-f44f-4478-bdae-6634efc2ca88}*SharedItemsImports = 4
+		Libraries\PubSubClient\2.7\PubSubClient\PubSubClient-2.7.vcxitems*{c5f80730-f44f-4478-bdae-6634efc2ca88}*SharedItemsImports = 4
+		Libraries\ESP8266HTTPClient\1.2\ESP8266HTTPClient\ESP8266HTTPClient-1.2.vcxitems*{ce287cdc-8df9-4d3f-b157-fdd5514ae005}*SharedItemsImports = 9
+		Libraries\PubSubClient\2.7\PubSubClient\PubSubClient-2.7.vcxitems*{d01a0e55-24f2-4cd3-bd0d-c1dca5d51a61}*SharedItemsImports = 9
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Debug|x86.ActiveCfg = Debug|Win32
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Debug|x86.Build.0 = Debug|Win32
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Release|x86.ActiveCfg = Release|Win32
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {88806D12-202C-45CA-B243-868C9E83F1B8}
+	EndGlobalSection
+EndGlobal
