@@ -94,32 +94,22 @@ void handleSetColor() {
     strip.show();
 }
 
-void handleRoot() {
-    Serial.println("Incoming request");
-    server.send(200, "text/plain", "hello from esp8266!");
-    digitalWrite(LED_BUILTIN, LOW);
+void handleSetColorRange() {
+    Serial.println("Set Color Range");
+    server.send(200, "text/plain", "Set Color");
 
-    digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
-    delay(100);                       // wait for a second
-    digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
-    delay(1000);
-    digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
-    delay(100);                       // wait for a second
-    digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
-    delay(1000);
-    digitalWrite(LED_BUILTIN, LOW);
+    int start = server.arg(0).toInt();
+    int end = server.arg(1).toInt();
+    ledColor_R = server.arg(2).toInt();
+    ledColor_G = server.arg(3).toInt();
+    ledColor_B = server.arg(4).toInt();
 
-
-
-    strip.setPixelColor(0, strip.Color(255, 0, 0));         //  Set pixel's color (in RAM)
-    strip.setBrightness(40);
-    strip.show();                          //  Update strip to match
-    delay(1000);
-    strip.setPixelColor(0, strip.Color(255, 200, 200));         //  Set pixel's color (in RAM)
-    strip.setBrightness(40);
-    strip.show();                          //  Update strip to match
-    delay(1000);
+    for (uint8_t i = start; i < end; i++) {
+        strip.setPixelColor(i, strip.Color(ledColor_R, ledColor_G, ledColor_B));
+    }
+    strip.show();
 }
+
 
 
 void handleHallwayMotionDetected() {
@@ -222,10 +212,11 @@ void setup() {
         Serial.println("MDNS responder started");
     }
 
-    server.on("/", handleRoot);
     server.on("/enableOta", handleEnableOTA);
     server.on("/setBrightness", handleSetBrightness);
     server.on("/setColor", handleSetColor);
+    server.on("/setColorRange", handleSetColorRange);
+   
     server.on("/hallwayMotionDetected", handleHallwayMotionDetected);
 
 
@@ -296,9 +287,9 @@ void loop() {
 
     //MQTT
 
-    if (!client.connected()) {
+    /*if (!client.connected()) {
         reconnect();
-    }
+    }*/
     client.loop();
 
     /*unsigned long now = millis();
