@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PubSubClient-2.7", "Librari
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WemosHeatingControl", "WemosHeatingControl\WemosHeatingControl.vcxproj", "{437639AF-4E38-4F4B-8BE2-0861649BC19E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HallwayLight", "HallwayLight\HallwayLight.vcxproj", "{23D2C5BA-C75B-4D1F-B3FC-646F1694A7FA}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Libraries\Adafruit_NeoPixel\1.3.4\Adafruit_NeoPixel\Adafruit_NeoPixel-1.3.4.vcxitems*{4d1769ed-3030-49cb-a924-d41b76df9d82}*SharedItemsImports = 9
@@ -35,6 +37,10 @@ Global
 		{437639AF-4E38-4F4B-8BE2-0861649BC19E}.Debug|x86.Build.0 = Debug|Win32
 		{437639AF-4E38-4F4B-8BE2-0861649BC19E}.Release|x86.ActiveCfg = Release|Win32
 		{437639AF-4E38-4F4B-8BE2-0861649BC19E}.Release|x86.Build.0 = Release|Win32
+		{23D2C5BA-C75B-4D1F-B3FC-646F1694A7FA}.Debug|x86.ActiveCfg = Debug|Win32
+		{23D2C5BA-C75B-4D1F-B3FC-646F1694A7FA}.Debug|x86.Build.0 = Debug|Win32
+		{23D2C5BA-C75B-4D1F-B3FC-646F1694A7FA}.Release|x86.ActiveCfg = Release|Win32
+		{23D2C5BA-C75B-4D1F-B3FC-646F1694A7FA}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -54,40 +54,40 @@ int value = 0;
 void handleSetBrightness() {
     Serial.println("Set brightness");
     //allowOTA = true;
-String message = "";
-  message += "URI: ";
-  message += server.uri();
-  message += "\nMethod: ";
-  message += (server.method() == HTTP_GET) ? "GET" : "POST";
-  message += "\nArguments: ";
-  message += server.args();
-  message += "\n";
+    String message = "";
+    message += "URI: ";
+    message += server.uri();
+    message += "\nMethod: ";
+    message += (server.method() == HTTP_GET) ? "GET" : "POST";
+    message += "\nArguments: ";
+    message += server.args();
+    message += "\n";
     for (uint8_t i = 0; i < server.args(); i++) {
         message += " " + server.argName(i) + ": " + server.arg(i) + "\n";
-      }
+    }
     server.send(200, "text/plain", message);
     Serial.println(message);
 
     int value = server.arg(0).toInt();
     strip.setBrightness(value);
-    strip.show(); 
+    strip.show();
 }
 
 void handleEnableOTA() {
-    Serial.println("Enable OTA");    
+    Serial.println("Enable OTA");
     server.send(200, "text/plain", "OTA enabled");
     allowOTA = true;
 }
 
 
 void handleSetColor() {
-    Serial.println("Set Color ");    
+    Serial.println("Set Color ");
     server.send(200, "text/plain", "Set Color");
 
     ledColor_R = server.arg(0).toInt();
     ledColor_G = server.arg(1).toInt();
     ledColor_B = server.arg(2).toInt();
-    
+
     for (uint8_t i = 0; i < LED_COUNT; i++) {
         strip.setPixelColor(i, strip.Color(ledColor_R, ledColor_G, ledColor_B));
     }
@@ -108,8 +108,8 @@ void handleRoot() {
     digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
     delay(1000);
     digitalWrite(LED_BUILTIN, LOW);
-    
-    
+
+
 
     strip.setPixelColor(0, strip.Color(255, 0, 0));         //  Set pixel's color (in RAM)
     strip.setBrightness(40);
@@ -133,7 +133,7 @@ void handleHallwayMotionDetected() {
         delay(50);
     }
 
-    delay(70000);
+    delay(90000);
 
     for (int i = 200; i >= 5; i--)
     {
@@ -141,7 +141,7 @@ void handleHallwayMotionDetected() {
         strip.show();
         delay(50);
     }
-   
+
 }
 
 
@@ -159,8 +159,8 @@ void setup() {
     }
 
     //MQTT
-    client.setServer(mqtt_server, 1883);
-    client.setCallback(callback);
+    //client.setServer(mqtt_server, 1883);
+    //client.setCallback(callback);
 
     // Port defaults to 8266
     // ArduinoOTA.setPort(8266);
@@ -227,8 +227,8 @@ void setup() {
     server.on("/setBrightness", handleSetBrightness);
     server.on("/setColor", handleSetColor);
     server.on("/hallwayMotionDetected", handleHallwayMotionDetected);
-    
-    
+
+
     server.begin();
     Serial.println("HTTP server started");
     digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
@@ -281,10 +281,10 @@ void checkButton() {
 
 void loop() {
     if (allowOTA)
-    {        
+    {
         ArduinoOTA.handle();
     }
-    
+
     server.handleClient();
     MDNS.update();
 
@@ -328,7 +328,7 @@ void reconnect() {
             // ... and resubscribe
             client.subscribe("inTopic");
             client.subscribe(topicPumpDownstairs);
-            
+
         }
         else {
             Serial.print("failed, rc=");
@@ -349,8 +349,8 @@ void callback(char* topic, byte* payload, unsigned int length) {
     }
     Serial.println();
 
-    if(strcmp(topic,topicPumpDownstairs))
-    { 
+    if (strcmp(topic, topicPumpDownstairs))
+    {
         Serial.println(";Pump downstairs");
         strip.setPixelColor(0, strip.Color(255, 0, 0));         //  Set pixel's color (in RAM)
         strip.setBrightness(40);
