@@ -121,9 +121,14 @@ void handleHallwayMotionDetected() {
         strip.setBrightness(i);
         strip.show();
         delay(50);
+        server.handleClient();
     }
 
-    delay(90000);
+    for (int i = 1; i < 100; i++)
+    {
+        server.handleClient();
+        delay(900);
+    }
 
     for (int i = 200; i >= 5; i--)
     {
@@ -228,6 +233,8 @@ void setup() {
     strip.begin();           // INITIALIZE NeoPixel strip object (REQUIRED)
     strip.show();            // Turn OFF all pixels ASAP
     //strip.setBrightness(10); // Set BRIGHTNESS to about 1/5 (max = 255)
+    strip.setBrightness(2);
+    strip.show();
     Serial.println("Led setup");
 }
 
