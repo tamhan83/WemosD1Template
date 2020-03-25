@@ -15,7 +15,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WemosHeatingControl", "Wemo
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HallwayLight", "HallwayLight\HallwayLight.vcxproj", "{23D2C5BA-C75B-4D1F-B3FC-646F1694A7FA}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GraphicTest", "GraphicTest\GraphicTest.vcxproj", "{FDA55178-166A-41F0-AB8C-C1F80DB31C39}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GraphicTestSpiTft", "GraphicTest\GraphicTest.vcxproj", "{FDA55178-166A-41F0-AB8C-C1F80DB31C39}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OledI2C", "OledI2C\OledI2C.vcxproj", "{09496B34-DDA2-46C8-AE25-B1FC0E82F97F}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -47,6 +49,10 @@ Global
 		{FDA55178-166A-41F0-AB8C-C1F80DB31C39}.Debug|x86.Build.0 = Debug|Win32
 		{FDA55178-166A-41F0-AB8C-C1F80DB31C39}.Release|x86.ActiveCfg = Release|Win32
 		{FDA55178-166A-41F0-AB8C-C1F80DB31C39}.Release|x86.Build.0 = Release|Win32
+		{09496B34-DDA2-46C8-AE25-B1FC0E82F97F}.Debug|x86.ActiveCfg = Debug|Win32
+		{09496B34-DDA2-46C8-AE25-B1FC0E82F97F}.Debug|x86.Build.0 = Debug|Win32
+		{09496B34-DDA2-46C8-AE25-B1FC0E82F97F}.Release|x86.ActiveCfg = Release|Win32
+		{09496B34-DDA2-46C8-AE25-B1FC0E82F97F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
