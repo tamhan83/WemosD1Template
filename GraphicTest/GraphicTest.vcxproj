@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{23D2C5BA-C75B-4D1F-B3FC-646F1694A7FA}</ProjectGuid>
-    <RootNamespace>HallwayLight</RootNamespace>
-    <ProjectName>HallwayLight</ProjectName>
+    <ProjectGuid>{FDA55178-166A-41F0-AB8C-C1F80DB31C39}</ProjectGuid>
+    <RootNamespace>GraphicTest</RootNamespace>
+    <ProjectName>GraphicTest</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -77,8 +77,8 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\HallwayLight;C:\Users\hanne\Documents\Arduino\libraries\PubSubClient\src;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.6.3\libraries\ESP8266WiFi\src;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.6.3\libraries\ESP8266HTTPClient\src;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.6.3\libraries\ESP8266mDNS\src;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.6.3\libraries\ArduinoOTA;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.6.3\libraries\ESP8266WebServer\src;C:\Users\hanne\Documents\Arduino\libraries\Adafruit_NeoPixel;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.6.3\cores\esp8266;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.6.3\cores\esp8266\avr;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.6.3\cores\esp8266\libb64;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.6.3\cores\esp8266\spiffs;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.6.3\cores\esp8266\umm_malloc;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.6.3\variants\d1;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.6.3\tools\sdk\include;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.6.3\tools\sdk\lwip2\include;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.6.3\tools\sdk\libc\xtensa-lx106-elf\include;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\tools\xtensa-lx106-elf-gcc\2.5.0-4-b40a506\xtensa-lx106-elf\include\c++\4.8.2;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\tools\xtensa-lx106-elf-gcc\2.5.0-4-b40a506\xtensa-lx106-elf\include\c++\4.8.2\xtensa-lx106-elf;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\tools\xtensa-lx106-elf-gcc\2.5.0-4-b40a506\xtensa-lx106-elf\include;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\tools\xtensa-lx106-elf-gcc\2.5.0-4-b40a506\lib\gcc\xtensa-lx106-elf\4.8.2\include;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.6.3\tools\sdk\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ForcedIncludeFiles>$(ProjectDir)__vm\.HallwayLight.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\GraphicTest;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.6.3\libraries\SPI;C:\Users\hanne\Documents\Arduino\libraries\Adafruit_ILI9341;C:\Users\hanne\Documents\Arduino\libraries\Adafruit_GFX_Library;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.6.3\cores\esp8266;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.6.3\cores\esp8266\avr;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.6.3\cores\esp8266\libb64;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.6.3\cores\esp8266\spiffs;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.6.3\cores\esp8266\umm_malloc;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.6.3\variants\d1;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.6.3\tools\sdk\include;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.6.3\tools\sdk\lwip2\include;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.6.3\tools\sdk\libc\xtensa-lx106-elf\include;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\tools\xtensa-lx106-elf-gcc\2.5.0-4-b40a506\xtensa-lx106-elf\include\c++\4.8.2;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\tools\xtensa-lx106-elf-gcc\2.5.0-4-b40a506\xtensa-lx106-elf\include\c++\4.8.2\xtensa-lx106-elf;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\tools\xtensa-lx106-elf-gcc\2.5.0-4-b40a506\xtensa-lx106-elf\include;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\tools\xtensa-lx106-elf-gcc\2.5.0-4-b40a506\lib\gcc\xtensa-lx106-elf\4.8.2\include;C:\Users\hanne\AppData\Local\arduino15\packages\esp8266\hardware\esp8266\2.6.3\tools\sdk\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ProjectDir)__vm\.GraphicTest.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <PreprocessorDefinitions>__ESP8266_esp8266__;__ESP8266_ESP8266__;_VMDEBUG=1;__ets__;ICACHE_FLASH;NONOSDK22x_190703=1;F_CPU=80000000L;LWIP_OPEN_SRC;TCP_MSS=536;LWIP_FEATURES=1;LWIP_IPV6=0;ARDUINO=108010;ARDUINO_ESP8266_WEMOS_D1R1;ARDUINO_ARCH_ESP8266;FLASHMODE_DIO;ESP8266;__cplusplus=201103L;_VMICRO_INTELLISENSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -107,7 +107,7 @@
     <DebuggerFlavor>VisualMicroDebugger</DebuggerFlavor>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="HallwayLight.ino">
+    <None Include="GraphicTest.ino">
       <FileType>CppCode</FileType>
     </None>
   </ItemGroup>
@@ -116,14 +116,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="__vm\.HallwayLight.vsarduino.h" />
+    <ClInclude Include="__vm\.GraphicTest.vsarduino.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties arduino.upload.port="COM3" config.Debug.customdebug_esp8266_d1_debugger_type="universal" />
+      <UserProperties arduino.upload.port="COM4" config.Debug.customdebug_esp8266_d1_debugger_type="universal" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
