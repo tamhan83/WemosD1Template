@@ -45,6 +45,8 @@ bool pumpDownstairsOn = false;
 bool pumpUpstairsOn = false;
 bool imageHeaterOn = false;
 
+bool statusChange = false;
+
 void setup() {
     Serial.begin(115200);
     Serial.println("Booting");
@@ -80,6 +82,14 @@ void loop() {
         reconnect();
     }
     client.loop();
+
+    //delay(50);
+
+    /*if (statusChange == true)
+    {
+        printStatus();
+        statusChange = false;
+    }*/
 
 }
 
@@ -130,8 +140,8 @@ void callback(char* topic, byte* payload, unsigned int length) {
     checkStatusLight(topic, payload, length, topicPumpUpstairs, &pumpUpstairsOn);
     checkStatusLight(topic, payload, length, topicImageHeater, &imageHeaterOn);
 
-
     printStatus();
+    
 }
 
 void printStatus()
@@ -141,18 +151,19 @@ void printStatus()
     tft.setCursor(0, 0);
     
     
-    tft.setTextColor(ILI9341_YELLOW); tft.setTextSize(2);
+    tft.setTextColor(ILI9341_YELLOW);
+    tft.setTextSize(2);
     tft.println("Hello World!");
 
     if(pumpDownstairsOn)
-        tft.println("Downstairs: ON");
+        tft.println("Down ON");
     else
-        tft.println("Downstairs: OFF");
+        tft.println("Down OFF");
 
     if (pumpUpstairsOn)
-        tft.println("Upstairs: ON");
+        tft.println("Up: ON");
     else
-        tft.println("Upstairs: OFF");
+        tft.println("Ups: OFF");
     
 
 }
@@ -178,10 +189,16 @@ void checkStatusLight(char* topic, byte* payload, unsigned int length, char* top
         //memcpy
         if (!strncmp((char*)payload, "ON", length))
         {
+            if (*statusVar == false)
+                statusChange = true;
             *statusVar = true;
+            
         }
         else
         {
+            if (*statusVar == true)
+                statusChange = true;
+
             *statusVar = false;
         }
 
