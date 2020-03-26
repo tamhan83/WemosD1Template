@@ -19,6 +19,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GraphicTestSpiTft", "Graphi
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OledI2C", "OledI2C\OledI2C.vcxproj", "{09496B34-DDA2-46C8-AE25-B1FC0E82F97F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WemosLcdHeating", "WemosLcdHeating\WemosLcdHeating.vcxproj", "{AA04F2A4-A3EC-4228-8D02-44DB50AD0E10}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Libraries\Adafruit_NeoPixel\1.3.4\Adafruit_NeoPixel\Adafruit_NeoPixel-1.3.4.vcxitems*{4d1769ed-3030-49cb-a924-d41b76df9d82}*SharedItemsImports = 9
@@ -53,6 +55,10 @@ Global
 		{09496B34-DDA2-46C8-AE25-B1FC0E82F97F}.Debug|x86.Build.0 = Debug|Win32
 		{09496B34-DDA2-46C8-AE25-B1FC0E82F97F}.Release|x86.ActiveCfg = Release|Win32
 		{09496B34-DDA2-46C8-AE25-B1FC0E82F97F}.Release|x86.Build.0 = Release|Win32
+		{AA04F2A4-A3EC-4228-8D02-44DB50AD0E10}.Debug|x86.ActiveCfg = Debug|Win32
+		{AA04F2A4-A3EC-4228-8D02-44DB50AD0E10}.Debug|x86.Build.0 = Debug|Win32
+		{AA04F2A4-A3EC-4228-8D02-44DB50AD0E10}.Release|x86.ActiveCfg = Release|Win32
+		{AA04F2A4-A3EC-4228-8D02-44DB50AD0E10}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
