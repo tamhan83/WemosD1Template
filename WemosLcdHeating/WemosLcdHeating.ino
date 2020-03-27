@@ -71,6 +71,7 @@ void setup() {
 
 
     tft.begin();
+    tft.fillScreen(ILI9341_BLACK);
     //tft.setRotation(0);
 }
 
@@ -133,7 +134,6 @@ void callback(char* topic, byte* payload, unsigned int length) {
     }
     Serial.println("'");
 
-    testText(payload, length);
 
     checkStatusLight(topic, payload, length, topicBoiler, &boilerOn);
     checkStatusLight(topic, payload, length, topicPumpDownstairs, &pumpDownstairsOn);
@@ -152,8 +152,12 @@ void printStatus()
     
     
     tft.setTextColor(ILI9341_YELLOW);
-    tft.setTextSize(2);
-    tft.println("Hello World!");
+    tft.setTextSize(3);
+    
+    if (boilerOn)
+        tft.println("Boiler ON");
+    else
+        tft.println("Boiler OFF");
 
     if(pumpDownstairsOn)
         tft.println("Down ON");
@@ -161,15 +165,21 @@ void printStatus()
         tft.println("Down OFF");
 
     if (pumpUpstairsOn)
-        tft.println("Up: ON");
+        tft.println("Up ON");
     else
-        tft.println("Ups: OFF");
+        tft.println("Up OFF");
+
+    if (imageHeaterOn)
+        tft.println("Image ON");
+    else
+        tft.println("Image OFF");
     
+
 
 }
 
 unsigned long testText(byte* payload, unsigned int length) {
-    tft.fillScreen(ILI9341_BLACK);
+    //tft.fillScreen(ILI9341_BLACK);
     unsigned long start = micros();
     tft.setCursor(0, 0);
     tft.setTextColor(ILI9341_WHITE);  tft.setTextSize(1);
