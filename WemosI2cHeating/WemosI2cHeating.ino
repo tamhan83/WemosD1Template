@@ -35,6 +35,7 @@ Adafruit_SSD1306 display(OLED_RESET);
 #define topicPumpUpstairs "heating/pump_upstairs"
 #define topicImageHeater "heating/image-heater"
 
+#define topicTempMusicRoom "temperature/music_room"
 
 const char* ssid = STASSID;
 const char* password = STAPSK;
@@ -56,6 +57,7 @@ bool imageHeaterOn = false;
 
 bool statusChange = false;
 
+char temperatureMr[8];
 float out = 3.12;
 
 void setup() {
@@ -136,6 +138,8 @@ void reconnect() {
             client.subscribe(topicPumpDownstairs);
             client.subscribe(topicPumpUpstairs);
             client.subscribe(topicImageHeater);
+            client.subscribe(topicTempMusicRoom);
+            
 
         }
         else {
@@ -162,6 +166,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
     checkStatusLight(topic, payload, length, topicPumpDownstairs, &pumpDownstairsOn);
     checkStatusLight(topic, payload, length, topicPumpUpstairs, &pumpUpstairsOn);
     checkStatusLight(topic, payload, length, topicImageHeater, &imageHeaterOn);
+    checkTemp(topic, payload, length, topicTempMusicRoom);
 
     printStatus();
 
@@ -193,58 +198,17 @@ void printStatus()
     else
         display.println("Image O");
 
-    display.println(out);
+    //display.println(out);
+    display.print("MR ");
+    display.println(temperatureMr);
+
+    /*display.print("Gar ");
+    display.println(temperatureMr);*/
+    
 
     display.display();
 }
 
-//void printStatus()
-//{
-//    tft.fillScreen(ILI9341_BLACK);
-//    unsigned long start = micros();
-//    tft.setCursor(0, 0);
-//
-//
-//    tft.setTextColor(ILI9341_YELLOW);
-//    tft.setTextSize(3);
-//
-//    if (boilerOn)
-//        tft.println("Boiler ON");
-//    else
-//        tft.println("Boiler OFF");
-//
-//    if (pumpDownstairsOn)
-//        tft.println("Down ON");
-//    else
-//        tft.println("Down OFF");
-//
-//    if (pumpUpstairsOn)
-//        tft.println("Up ON");
-//    else
-//        tft.println("Up OFF");
-//
-//    if (imageHeaterOn)
-//        tft.println("Image ON");
-//    else
-//        tft.println("Image OFF");
-//
-//
-//
-//}
-//
-//unsigned long testText(byte* payload, unsigned int length) {
-//    //tft.fillScreen(ILI9341_BLACK);
-//    unsigned long start = micros();
-//    tft.setCursor(0, 0);
-//    tft.setTextColor(ILI9341_WHITE);  tft.setTextSize(1);
-//    tft.println("Hello World!");
-//    tft.setTextColor(ILI9341_YELLOW); tft.setTextSize(2);
-//    for (int i = 0; i < length; i++) {
-//        tft.print((char)payload[i]);
-//    }
-//
-//    return micros() - start;
-//}
 
 void checkStatusLight(char* topic, byte* payload, unsigned int length, char* topicToCheck, bool* statusVar) {
     if (strcmp(topic, topicToCheck) == 0)
@@ -258,7 +222,7 @@ void checkStatusLight(char* topic, byte* payload, unsigned int length, char* top
             *statusVar = true;
 
         }
-        else
+        else  
         {
             if (*statusVar == true)
                 statusChange = true;
@@ -266,5 +230,21 @@ void checkStatusLight(char* topic, byte* payload, unsigned int length, char* top
             *statusVar = false;
         }
 
+
     }
+}
+
+void checkTemp(char* topic, byte* payload, unsigned int length, char* topicToCheck) {
+    if (strcmp(topic, topicToCheck) == 0)
+    {
+
+        
+            Serial.println("temp received");
+            Serial.println(length);
+            
+            strncpy(temperatureMr, (char*)payload, sizeof(length));
+            
+
+        }
+    
 }
