@@ -17,17 +17,21 @@ Adafruit_NeoPixel strip(LED_COUNT, 2, NEO_GRB + NEO_KHZ800);
 #define STAPSK  "GuitarHero40!"
 #endif
 
-#define topicBoiler "homie/homey-1/boiler-pump1/onoff"
-#define topicPumpDownstairs "homie/homey-1/boiler-pump1/onoff1"
-#define topicPumpUpstairs "homie/homey-1/pump---upstairs/onoff"
-#define topicImageHeater "homie/homey-1/image-heater/onoff"
+//#define topicBoiler "homie/homey-1/boiler-pump1/onoff"
+//#define topicPumpDownstairs "homie/homey-1/boiler-pump1/onoff1"
+//#define topicPumpUpstairs "homie/homey-1/pump---upstairs/onoff"
+//#define topicImageHeater "homie/homey-1/image-heater/onoff"
+#define topicBoiler "heating/boiler"
+#define topicPumpDownstairs "heating/pump_downstairs"
+#define topicPumpUpstairs "heating/pump_upstairs"
+#define topicImageHeater "heating/image-heater"
 
 
 const char* ssid = STASSID;
 const char* password = STAPSK;
 
 //MQTT
-const char* mqtt_server = "192.168.1.12";
+const char* mqtt_server = "192.168.1.13";
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -136,7 +140,7 @@ void checkStatusLight(char* topic, byte* payload, unsigned int length, char* top
     {
 
         //memcpy
-        if (!strncmp((char*)payload, "true", length))
+        if (!strncmp((char*)payload, "ON", length))
         {
             strip.setBrightness(2);
             strip.show();                          //  Update strip to match
