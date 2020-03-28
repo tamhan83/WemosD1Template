@@ -96,6 +96,8 @@ void setup() {
     display.setRotation(3);
     display.setCursor(0, 0);
     display.println("Hi Hannes!");
+    display.ssd1306_command(0x81);
+    display.ssd1306_command(50); //max 157
     display.display();
     
 }
