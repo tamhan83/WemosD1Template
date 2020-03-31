@@ -46,8 +46,12 @@ bool pumpUpstairsOn = false;
 bool imageHeaterOn = false;
 
 bool statusChange = false;
+int buttonLeftPin = 4;
+int buttonRightPin = 5;
 
 void setup() {
+    pinMode(buttonLeftPin, INPUT);
+    pinMode(buttonRightPin, INPUT);
     Serial.begin(115200);
     Serial.println("Booting");
     WiFi.mode(WIFI_STA);
@@ -84,7 +88,14 @@ void loop() {
     }
     client.loop();
 
-    //delay(50);
+    delay(100);
+    int buttonLeftState = digitalRead(buttonLeftPin);
+    int buttonRightState = digitalRead(buttonRightPin);
+    Serial.print("Left");
+    Serial.println(buttonLeftState);
+
+    Serial.print("Right");
+    Serial.println(buttonRightState);
 
     /*if (statusChange == true)
     {
