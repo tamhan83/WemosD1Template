@@ -14,7 +14,7 @@ ESP8266WiFiMulti WiFiMulti;
 #include <ESP8266WebServer.h>
 
 #include <Adafruit_NeoPixel.h>
-#define LED_COUNT 61
+#define LED_COUNT 3
 #define LED_PIN 2   
 Adafruit_NeoPixel strip(LED_COUNT, 2, NEO_GRB + NEO_KHZ800);
 #ifdef __AVR__
@@ -42,7 +42,7 @@ int ledColor_B = 5;
 ESP8266WebServer server(80);
 
 //MQTT
-const char* mqtt_server = "192.168.1.12";
+const char* mqtt_server = "192.168.1.13";
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -154,8 +154,9 @@ void setup() {
     }
 
     //MQTT
-    //client.setServer(mqtt_server, 1883);
-    //client.setCallback(callback);
+    client.setServer(mqtt_server, 1883);
+    client.setCallback(callback);
+
 
     // Port defaults to 8266
     // ArduinoOTA.setPort(8266);
@@ -294,9 +295,9 @@ void loop() {
 
     //MQTT
 
-    /*if (!client.connected()) {
+    if (!client.connected()) {
         reconnect();
-    }*/
+    }
     client.loop();
 
     /*unsigned long now = millis();
@@ -326,7 +327,14 @@ void reconnect() {
             // ... and resubscribe
             client.subscribe("inTopic");
             client.subscribe(topicPumpDownstairs);
+            //client.publish("Wemos", WiFi.localIP());
+            
+            String base = "Wemos/";
+            base.concat(WiFi.localIP().toString());
+            char topic[40];
+            base.toCharArray(topic, 40);
 
+           client.publish(topic, "connected");
         }
         else {
             Serial.print("failed, rc=");
