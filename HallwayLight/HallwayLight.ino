@@ -4,13 +4,10 @@
 #include <WiFiClient.h>
 ESP8266WiFiMulti WiFiMulti;
 #include <ESP8266HTTPClient.h>
-
 #include <ESP8266WiFi.h>
 #include <ESP8266mDNS.h>
 #include <WiFiUdp.h>
 #include <ArduinoOTA.h>
-
-#include <WiFiClient.h>
 #include <ESP8266WebServer.h>
 
 #include <Adafruit_NeoPixel.h>
@@ -325,8 +322,8 @@ void reconnect() {
             // Once connected, publish an announcement...
             client.publish("outTopic", "hello world");
             // ... and resubscribe
-            client.subscribe("inTopic");
-            client.subscribe(topicPumpDownstairs);
+            //client.subscribe("inTopic");
+            //client.subscribe(topicPumpDownstairs);
             //client.publish("Wemos", WiFi.localIP());
             
             String base = "Wemos/";
