@@ -155,7 +155,7 @@ void setup() {
 
     //MQTT
     client.setServer(mqtt_server, 1883);
-    client.setCallback(callback);
+    //client.setCallback(callback);
 
 
     // Port defaults to 8266
