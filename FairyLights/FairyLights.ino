@@ -1,13 +1,10 @@
 #include <PubSubClient.h>
-#include <ESP8266WebServer.h>
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 #include <ESP8266WiFi.h>
 #include <WiFiUdp.h>
 #include <ArduinoOTA.h>
 #include <WiFiClient.h>
-
-
 
 #ifndef STASSID
 #define STASSID "Doghouse_2.4"
@@ -19,14 +16,11 @@ bool allowOTA = false;
 const char* ssid = STASSID;
 const char* password = STAPSK;
 
-ESP8266WebServer server(80);
-
 //MQTT
 const char* mqtt_server = "192.168.1.13";
 
 WiFiClient espClient;
 PubSubClient client(espClient);
-
 
 // constants won't change. They're used here to
 // set pin numbers:
@@ -62,7 +56,7 @@ void setup() {
 
     //MQTT
     client.setServer(mqtt_server, 1883);
-    //client.setCallback(callback);
+    client.setCallback(callback);
 
 
     ArduinoOTA.onStart([]() {
@@ -106,10 +100,6 @@ void setup() {
     Serial.print("IP address: ");
     Serial.println(WiFi.localIP());
     
-
-    server.on("/enableOta", handleEnableOTA);
-
-    server.begin();
     Serial.println("HTTP server started");
 }
 void loop() {
@@ -122,32 +112,31 @@ void loop() {
             // turn LED on:
             digitalWrite(ledPin, HIGH);
             lightsOn = true;
-            client.publish("Custom/FairyLights", "ON");
+            client.publish("wemos/heart_lights/state", "ON");
         }
         else        
         {
             digitalWrite(ledPin, false);
             lightsOn = false;
-            client.publish("Custom/FairyLights", "OFF");
+            client.publish("wemos/heart_lights/state", "OFF");
         }
         delay(1000);
     }
     // Added the delay so that we can see the output of button
     delay(50);
 
-    //infrastructure
 
+
+    //infrastructure
+    if (allowOTA)
+    {
+        ArduinoOTA.handle();
+    }
 
     if (!client.connected()) {
         reconnect();
     }
     client.loop();
-}
-
-void handleEnableOTA() {
-    Serial.println("Enable OTA");
-    server.send(200, "text/plain", "OTA enabled");
-    allowOTA = true;
 }
 
 void reconnect() {
@@ -164,10 +153,10 @@ void reconnect() {
             client.publish("outTopic", "hello world");
             // ... and resubscribe
             //client.subscribe("inTopic");
-            //client.subscribe(topicPumpDownstairs);
+            client.subscribe("wemos/heart_lights/enable_ota/set");
             //client.publish("Wemos", WiFi.localIP());
 
-            String base = "Wemos/FairyLights/";
+            String base = "wemos/heart_lights/";
             base.concat(WiFi.localIP().toString());
             char topic[40];
             base.toCharArray(topic, 40);
@@ -182,4 +171,11 @@ void reconnect() {
             delay(5000);
         }
     }
+}
+
+void callback(char* topic, byte* payload, unsigned int length) {
+    Serial.print("Message arrived [");
+    Serial.println("Enable OTA");
+    client.publish("wemos/heart_lights/enable_ota/state", "enabled");
+    allowOTA = true;
 }
