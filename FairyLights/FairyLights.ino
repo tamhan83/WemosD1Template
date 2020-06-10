@@ -16,8 +16,11 @@ bool allowOTA = false;
 const char* ssid = STASSID;
 const char* password = STAPSK;
 
+
 //MQTT
 const char* mqtt_server = "192.168.1.13";
+const char* topicEnableOta = "wemos/heart_lights/enable_ota/set";
+const char* topicToggle = "wemos/heart_lights/toggle";
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -149,11 +152,11 @@ void reconnect() {
         // Attempt to connect
         if (client.connect(clientId.c_str())) {
             Serial.println("connected");
-            // Once connected, publish an announcement...
-            client.publish("outTopic", "hello world");
             // ... and resubscribe
             //client.subscribe("inTopic");
-            client.subscribe("wemos/heart_lights/enable_ota/set");
+            client.subscribe(topicEnableOta);
+            client.subscribe(topicToggle);
+            
             //client.publish("Wemos", WiFi.localIP());
 
             String base = "wemos/heart_lights/";
@@ -174,8 +177,18 @@ void reconnect() {
 }
 
 void callback(char* topic, byte* payload, unsigned int length) {
-    Serial.print("Message arrived [");
-    Serial.println("Enable OTA");
-    client.publish("wemos/heart_lights/enable_ota/state", "enabled");
-    allowOTA = true;
+    Serial.print("Message arrived");
+    if (strcmp(topic, topicEnableOta))
+    {        
+        Serial.println("Enable OTA");
+        client.publish("wemos/heart_lights/enable_ota/state", "enabled");
+        allowOTA = true;
+    }
+    if (strcmp(topic, topicEnableOta))
+    { 
+        if (lightsOn == false)
+            lightsOn = true;
+        else
+            lightsOn = false;
+    }
 }
