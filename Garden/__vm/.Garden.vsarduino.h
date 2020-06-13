@@ -113,6 +113,6 @@ typedef long __PTRDIFF_TYPE__;
 #define interrupts() sei()
 #define noInterrupts() cli()
 
-#include "HallwayLight.ino"
+#include "Garden.ino"
 #endif
 #endif

@@ -17,6 +17,8 @@ const char* ssid = STASSID;
 const char* password = STAPSK;
 
 
+const char* device_name = "garden";
+
 //MQTT
 const char* mqtt_server = "192.168.1.13";
 const char* topicEnableOta = "wemos/heart_lights/enable_ota/set";
