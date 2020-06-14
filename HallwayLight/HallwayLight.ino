@@ -11,7 +11,7 @@ ESP8266WiFiMulti WiFiMulti;
 #include <ESP8266WebServer.h>
 
 #include <Adafruit_NeoPixel.h>
-#define LED_COUNT 3
+#define LED_COUNT 20
 #define LED_PIN 2   
 Adafruit_NeoPixel strip(LED_COUNT, 2, NEO_GRB + NEO_KHZ800);
 #ifdef __AVR__
@@ -23,6 +23,8 @@ Adafruit_NeoPixel strip(LED_COUNT, 2, NEO_GRB + NEO_KHZ800);
 #define STASSID "Doghouse_2.4"
 #define STAPSK  "GuitarHero40!"
 #endif
+
+//String device_name = "hallway";
 
 #define topicPumpDownstairs "homie/homey-1/boiler-pump1/onoff1"
 
@@ -320,18 +322,14 @@ void reconnect() {
         if (client.connect(clientId.c_str())) {
             Serial.println("connected");
             // Once connected, publish an announcement...
-            client.publish("outTopic", "hello world");
-            // ... and resubscribe
-            //client.subscribe("inTopic");
-            //client.subscribe(topicPumpDownstairs);
-            //client.publish("Wemos", WiFi.localIP());
             
-            String base = "Wemos/";
+            String base = "wemos/hallway/";
+            //base.concat(device_name);
             base.concat(WiFi.localIP().toString());
             char topic[40];
             base.toCharArray(topic, 40);
 
-           client.publish(topic, "connected");
+           client.publish(topic, "connected", true);
         }
         else {
             Serial.print("failed, rc=");
