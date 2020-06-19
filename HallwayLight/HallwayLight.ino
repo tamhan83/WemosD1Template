@@ -34,9 +34,9 @@ bool triggered = false;
 const char* ssid = STASSID;
 const char* password = STAPSK;
 
-int ledColor_R = 5;
-int ledColor_G = 5;
-int ledColor_B = 5;
+int ledColor_R = 250;
+int ledColor_G = 100;
+int ledColor_B = 1;
 
 ESP8266WebServer server(80);
 
@@ -115,14 +115,16 @@ void handleHallwayMotionDetected() {
     server.send(200, "text/plain", "motion");
 
 
-    for (int i = 5; i < 200; i++)
-    {
-        strip.setPixelColor(i, strip.Color(ledColor_R, ledColor_G, ledColor_B));
-        strip.setBrightness(i);
-        strip.show();
-        delay(50);
-        server.handleClient();
-    }
+      strip.setBrightness(230);
+      strip.show();
+    //for (int i = 5; i < 200; i++)
+    //{
+    //    strip.setPixelColor(i, strip.Color(ledColor_R, ledColor_G, ledColor_B));
+    //    strip.setBrightness(i);
+    //    strip.show();
+    //    delay(50);
+    //    server.handleClient();
+    //}
 
     for (int i = 1; i < 100; i++)
     {
@@ -132,10 +134,10 @@ void handleHallwayMotionDetected() {
 
     for (int i = 200; i >= 5; i--)
     {
-      strip.setPixelColor(i, strip.Color(ledColor_R, ledColor_G, ledColor_B));
+      //strip.setPixelColor(i, strip.Color(ledColor_R, ledColor_G, ledColor_B));
         strip.setBrightness(i);
         strip.show();
-        delay(50);
+        delay(100);
     }
 
 }
@@ -235,6 +237,10 @@ void setup() {
     strip.begin();           // INITIALIZE NeoPixel strip object (REQUIRED)
     strip.show();            // Turn OFF all pixels ASAP
     //strip.setBrightness(10); // Set BRIGHTNESS to about 1/5 (max = 255)
+    for (uint8_t i = 0; i < LED_COUNT; i++) {
+        strip.setPixelColor(i, strip.Color(ledColor_R, ledColor_G, ledColor_B));
+    }
+    strip.show();
     strip.setBrightness(2);
     strip.show();
     Serial.println("Led setup");
