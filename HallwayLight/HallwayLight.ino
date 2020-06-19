@@ -132,13 +132,17 @@ void handleHallwayMotionDetected() {
         delay(900);
     }
 
-    for (int i = 200; i >= 5; i--)
-    {
+    strip.setBrightness(5);
+      strip.show();
+      
+    //for (int i = 200; i >= 5; i--)
+    //{
       //strip.setPixelColor(i, strip.Color(ledColor_R, ledColor_G, ledColor_B));
-        strip.setBrightness(i);
-        strip.show();
-        delay(100);
-    }
+    //    strip.setBrightness(i);
+    //    strip.show();
+    //    delay(100);
+    //}
+    
 
 }
 
