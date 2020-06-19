@@ -117,6 +117,7 @@ void handleHallwayMotionDetected() {
 
     for (int i = 5; i < 200; i++)
     {
+        strip.setPixelColor(i, strip.Color(ledColor_R, ledColor_G, ledColor_B));
         strip.setBrightness(i);
         strip.show();
         delay(50);
@@ -131,6 +132,7 @@ void handleHallwayMotionDetected() {
 
     for (int i = 200; i >= 5; i--)
     {
+      strip.setPixelColor(i, strip.Color(ledColor_R, ledColor_G, ledColor_B));
         strip.setBrightness(i);
         strip.show();
         delay(50);
@@ -238,44 +240,6 @@ void setup() {
     Serial.println("Led setup");
 }
 
-void checkButton() {
-    // put your main code here, to run repeatedly:
-
-    byte val = digitalRead(13);
-    if (val == HIGH)
-    {
-        if (triggered == false)
-        {
-            Serial.print("Connected to ");
-            triggered = true;
-
-            if ((WiFiMulti.run() == WL_CONNECTED)) {
-
-                WiFiClient client;
-
-                HTTPClient http;
-
-                Serial.print("[HTTP] begin...\n");
-                if (http.begin(client, "http://192.168.1.13:1880/test?button=click")) {  // HTTP
-
-
-                    Serial.print("[HTTP] GET...\n");
-                    // start connection and send HTTP header
-                    int httpCode = http.GET();
-                }
-            }
-
-        }
-    }
-    else
-    {
-        if (triggered == true)
-        {
-            triggered = false;
-        }
-    }
-    delay(100);
-}
 
 void loop() {
     if (allowOTA)
@@ -352,7 +316,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
 
     if (strcmp(topic, topicPumpDownstairs))
     {
-        Serial.println(";Pump downstairs");
+        //Serial.println(";Pump downstairs");
         strip.setPixelColor(0, strip.Color(255, 0, 0));         //  Set pixel's color (in RAM)
         strip.setBrightness(40);
         strip.show();                          //  Update strip to match
