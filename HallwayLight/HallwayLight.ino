@@ -26,7 +26,7 @@ Adafruit_NeoPixel strip(LED_COUNT, 2, NEO_GRB + NEO_KHZ800);
 
 //String device_name = "hallway";
 
-#define topicPumpDownstairs "homie/homey-1/boiler-pump1/onoff1"
+#define topicHallwayMotionDetected "wemos/hallway/motion_detected"
 
 bool allowOTA = false;
 bool triggered = false;
@@ -117,18 +117,51 @@ void handleHallwayMotionDetected() {
 
       strip.setBrightness(230);
       strip.show();
-    //for (int i = 5; i < 200; i++)
+      
+    //for (int i = 5; i < 200; i += 20)
     //{
-    //    strip.setPixelColor(i, strip.Color(ledColor_R, ledColor_G, ledColor_B));
     //    strip.setBrightness(i);
     //    strip.show();
-    //    delay(50);
-    //    server.handleClient();
+    //    delay(200);
+    //    //server.handleClient();
     //}
 
     for (int i = 1; i < 100; i++)
     {
         server.handleClient();
+        delay(900);
+    }
+
+    strip.setBrightness(5);
+      strip.show();
+      
+    //for (int i = 200; i >= 5; i--)
+    //{
+      //strip.setPixelColor(i, strip.Color(ledColor_R, ledColor_G, ledColor_B));
+    //    strip.setBrightness(i);
+    //    strip.show();
+    //    delay(100);
+    //}
+    
+
+}
+
+
+void handleHallwayMotionDetected_mqtt() {
+
+      strip.setBrightness(230);
+      strip.show();
+
+   /* for (int i = 5; i < 200; i += 20)
+    {
+        strip.setBrightness(i);
+        strip.show();
+        delay(200);
+    }
+    */
+
+    for (int i = 1; i < 100; i++)
+    {
         delay(900);
     }
 
@@ -161,8 +194,8 @@ void setup() {
     }
 
     //MQTT
-    client.setServer(mqtt_server, 1883);
-    //client.setCallback(callback);
+    client.setServer(mqtt_server, 1883);    
+    client.setCallback(callback);
 
 
     // Port defaults to 8266
@@ -302,7 +335,7 @@ void reconnect() {
             base.concat(WiFi.localIP().toString());
             char topic[40];
             base.toCharArray(topic, 40);
-
+          client.subscribe(topicHallwayMotionDetected);
            client.publish(topic, "connected", true);
         }
         else {
@@ -316,31 +349,20 @@ void reconnect() {
 }
 
 void callback(char* topic, byte* payload, unsigned int length) {
-    Serial.print("Message arrived [");
-    Serial.print(topic);
-    Serial.print("] ");
-    for (int i = 0; i < length; i++) {
-        Serial.print((char)payload[i]);
-    }
-    Serial.println();
+    //Serial.print("Message arrived [");
+    //Serial.print(topic);
+    //Serial.print("] ");
+    //for (int i = 0; i < length; i++) {
+    //    Serial.print((char)payload[i]);
+    //}
+    //Serial.println();
 
-    if (strcmp(topic, topicPumpDownstairs))
+    handleHallwayMotionDetected_mqtt();
+    //if (strcmp(topic, topicHallwayMotionDetected))
     {
-        //Serial.println(";Pump downstairs");
-        strip.setPixelColor(0, strip.Color(255, 0, 0));         //  Set pixel's color (in RAM)
-        strip.setBrightness(40);
-        strip.show();                          //  Update strip to match
-        delay(1000);
-    }
 
-    // Switch on the LED if an 1 was received as first character
-    if ((char)payload[0] == '1') {
-        digitalWrite(BUILTIN_LED, LOW);   // Turn the LED on (Note that LOW is the voltage level
-        // but actually the LED is on; this is because
-        // it is active low on the ESP-01)
-    }
-    else {
-        digitalWrite(BUILTIN_LED, HIGH);  // Turn the LED off by making the voltage HIGH
+        //Serial.println(";Pump downstairs");
+        
     }
 
 }
